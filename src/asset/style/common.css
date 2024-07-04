@@ -1,0 +1,13 @@
+.box1 {
+  display: flex;
+  border-radius: 4px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  background: url(../img/smillTiger.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

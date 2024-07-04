@@ -1,0 +1,44 @@
+{
+  "id": "4597519",
+  "name": "个人",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "34452814",
+      "name": "customer-fill",
+      "font_class": "customer-fill",
+      "unicode": "e828",
+      "unicode_decimal": 59432
+    },
+    {
+      "icon_id": "34452859",
+      "name": "format-pdf",
+      "font_class": "format-pdf",
+      "unicode": "e82b",
+      "unicode_decimal": 59435
+    },
+    {
+      "icon_id": "34452860",
+      "name": "format-jpeg",
+      "font_class": "format-jpeg",
+      "unicode": "e82c",
+      "unicode_decimal": 59436
+    },
+    {
+      "icon_id": "34452861",
+      "name": "format-png",
+      "font_class": "format-png",
+      "unicode": "e82d",
+      "unicode_decimal": 59437
+    },
+    {
+      "icon_id": "34452868",
+      "name": "logistics-airfreight-fill",
+      "font_class": "logistics-airfreight-fill",
+      "unicode": "e82e",
+      "unicode_decimal": 59438
+    }
+  ]
+}
