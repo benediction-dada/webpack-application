@@ -2,8 +2,12 @@ const ESLintWebpackPlugin = require('eslint-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserWebpackPlugin =require('terser-webpack-plugin')
 
 const path = require('path');
+const os = require('os');
+
+const threads = os.cpus().length
 
 function styleLoaderFactory(pre) {
   return [
@@ -46,14 +50,22 @@ module.exports = {
           {
             test: /\.js$/,
             exclude: /(node_modules)/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env'],
-                cacheDirectory: true, // 开启babel缓存
-                cacheCompression: false // 缓存是否压缩
+            use: [
+              {
+                loader: 'thread-loader',
+                options: {
+                  workers: threads
+                }
+              },
+              {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env'],
+                  cacheDirectory: true, // 开启babel缓存
+                  cacheCompression: false // 缓存是否压缩
+                }
               }
-            }
+            ]
           },
           {
             test: /\.css$/,
@@ -97,14 +109,18 @@ module.exports = {
   optimization: {
     minimizer: [
       new CssMinimizerPlugin(),
+      new TerserWebpackPlugin({ // 不写会自动调用，写出来是为了配置进程数
+        parallel: threads
+      })
     ],
-    minimize: true,
+    minimize: true, // 启用压缩
   },
   plugins: [
     new ESLintWebpackPlugin({
       context: path.resolve(__dirname, '../src'),
       exclude: 'node_modules',
-      cache: true // 默认为true
+      cache: true, // 默认为true
+      threads, // 开启多进程 设置进程数量
     }),
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, '../public/index.html')
